@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - KāvyaLok</title>
+  <link rel="icon" type="image/png" href="/logo.png" />
+  <link rel="stylesheet" href="style.css" />
+  <meta name="theme-color" content="#181825" />
+<meta name="mobile-web-app-capable" content="yes">
+
+</head>
+<body>
+  <header class="main-header">
+    <h1 onclick="location.href='/'">Kavyalok</h1>
+  </header>
+  
+  <div class="auth-card">
+    <h2>Login to Access KāvyaLok</h2>
+    <button id="google-login" class="auth-btn"><img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google icon">
+        Continue with Google</button>
+    <p id="status"></p>
+  </div>
+
+  <script type="module" src="auth.js"></script>
+</body>
+</html>

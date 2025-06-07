@@ -1,0 +1,81 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+   <title>KāvyaLok Admin 🛠️</title>
+  <link rel="icon" type="image/png" href="/logo.png" />
+   <link rel="stylesheet" href="style.css" />
+   <meta name="theme-color" content="#181825" />
+<meta name="mobile-web-app-capable" content="yes">
+
+   <script src="https://kit.fontawesome.com/798a5509b9.js" crossorigin="anonymous"></script>
+   </head>
+ <body>
+
+<div id="pageLoader" class="loader-overlay">
+  <div class="loader-card">
+    <div class="loader-ring"></div>
+    <p class="loader-text">Loading Shayaris...</p>
+  </div>
+</div>
+
+    <header class="main-header">
+    <h1>Kavyalok</h1>
+  </header>
+  
+   <div class="admin-container">
+ 
+     <form id="shayariForm">
+       <textarea id="shayariInput" placeholder="Write your Shayari here..." required></textarea>
+       <button type="submit">Save Shayari</button>
+     </form>
+ 
+     <div class="list-container" id="shayariList">
+       <!-- Shayari cards appear here -->
+     </div>
+     <button id="logoutBtn">Logout</button>
+     <p id="status"></p>
+   </div>
+
+   
+<div class="plus-button-wrapper">
+  <button class="plus-button">+</button>
+</div>
+
+<footer class="footer-nav">
+  <i class="fas fa-home" onclick="location.href='/'"></i>
+  <i class="fas fa-cog" onclick="location.href='/Settings/'"></i>
+</footer>
+
+   <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+    import {
+      getAuth,
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+  
+    const firebaseConfig = {
+      apiKey: "AIzaSyAnk8ApGJZd85R8eT2ryg72jUd90VEyuAQ",
+authDomain: "test-pro-e6152.firebaseapp.com",
+    projectId: "test-pro-e6152",
+    appId: "1:766763484355:web:db970872019c63a507ce76"
+};
+  
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+  
+    onAuthStateChanged(auth, user => {
+      if (!user) {
+        window.location.href = "/auth";
+      }
+    });
+  </script> 
+  
+  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+  
+   <script type="module" src="script.js"></script>
+ </body>
+ </html>
+ 

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KāvyaLok Drishyam</title>
+  <link rel="icon" type="image/png" href="/logo.png" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@7.4.1/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="style.css" /><meta name="theme-color" content="#181825" />
+<meta name="mobile-web-app-capable" content="yes">
+  <script src="https://kit.fontawesome.com/798a5509b9.js" crossorigin="anonymous"></script>
+  <link rel="manifest" href="/manifest.json">
+</head>
+<body>
+  <!-- Loader Overlay -->
+<div id="pageLoader" class="loader-overlay">
+  <div class="loader-card">
+    <div class="loader-ring"></div>
+    <p class="loader-text">Loading Shayari...</p>
+  </div>
+</div>
+
+<header class="main-header">
+  <h1>Kavyalok</h1>
+  <div class="nav-actions">
+    <button class="search-toggle"><i class="fas fa-search"></i></button>
+    <input type="text" id="searchBar" placeholder="Search Shayari..."/>
+  </div>
+</header>
+
+<main>
+  <div class="slide-container swiper">
+    <div class="slide-content">
+      <div class="card-wrapper swiper-wrapper" id="carouselInner"></div>
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+</main>
+
+
+<div id="daataa" class="plus-button-wrapper">
+  <button class="plus-button" onclick="location.href='/Admin/'">+</button>
+</div>
+
+<footer class="footer-nav">
+  <i class="fas fa-home active"></i>
+  <i class="fas fa-cog" onclick="location.href='/Settings/'"></i>
+  </footer>
+
+<div class="info" onclick="showDevModal()">
+  <i class="fas fa-info-circle"></i>
+</div>
+
+<div id="devModalOverlay" class="dev-modal-overlay">
+  <div class="dev-modal-card" onclick="event.stopPropagation()">
+    <div class="dev-modal-icon">
+      <i class="fas fa-user-cog"></i>
+    </div>
+    <h2 class="dev-modal-title">Developer Info</h2>
+    <div class="dev-modal-line">
+      <span class="dev-label">Name:</span>
+      <span class="dev-value">Raj Vardhan Singh</span>
+    </div>
+    <div class="dev-modal-line">
+      <span class="dev-label">Email:</span>
+      <span class="dev-value">developerrajvsr@gmail.com</span>
+    </div>
+    <div class="dev-modal-line">
+      <span class="dev-label">Portfolio:</span>
+      <a href="#" class="dev-link" target="_blank">Under Development</a>
+    </div>
+  </div>
+</div>
+
+
+  <script defer src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/swiper@7.4.1/swiper-bundle.min.js"></script>
+<script defer src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Import Shared Shayari</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="share.css" />
+  <link rel="icon" href="/logo.png" />
+  <script src="https://kit.fontawesome.com/798a5509b9.js" crossorigin="anonymous"></script>
+</head>
+<body class="theme-transition">
+
+  <!-- Page Loader -->
+  <div id="pageLoader" class="loader-overlay">
+    <div class="loader-card">
+      <div class="loader-ring"></div>
+      <p class="loader-text">Submitting Shayari...</p>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="main-header">
+    <h1>Kavyalok</h1>
+  </header>
+
+  <!-- Main content -->
+  <main class="settings-page">
+    <div class="settings-card">
+      <div class="profile-section">
+        <i class="fas fa-feather-alt profile-icon"></i>
+        <h2>Submitting Shayari</h2>
+        <p id="statusText">Please wait while we save your Shayari...</p>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Firebase Module SDKs -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+    import { getDatabase, push, ref, set } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAnk8ApGJZd85R8eT2ryg72jUd90VEyuAQ",
+      authDomain: "test-pro-e6152.firebaseapp.com",
+      databaseURL: "https://test-pro-e6152-default-rtdb.firebaseio.com",
+      projectId: "test-pro-e6152",
+      appId: "1:766763484355:web:db970872019c63a507ce76"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getDatabase(app);
+
+    const loader = document.getElementById("pageLoader");
+    const statusText = document.getElementById("statusText");
+
+    onAuthStateChanged(auth, async user => {
+      if (!user) {
+        location.href = '/auth';
+        return;
+      }
+
+      const params = new URLSearchParams(window.location.search);
+      const text = params.get('text');
+
+      if (text) {
+        try {
+          const newRef = push(ref(db, 'shayari_submissions'));
+          await set(newRef, { text });
+          statusText.innerHTML = "✅ Shared Shayari Submitted Successfully!";
+      setTimeout(() => {
+        loader.classList.add("hidden");
+        setTimeout(() => window.location.href = '/admin/', 100);
+      }, 200);
+        } catch (e) {
+          statusText.innerHTML = "❌ Failed to submit. Please try again.";
+          
+
+      setTimeout(() => {
+        loader.classList.add("hidden");
+        setTimeout(() => window.location.href = '/', 100);
+      }, 200);
+        }
+      } else {
+        statusText.innerHTML = "⚠️ No Shayari text received.";
+        
+
+      setTimeout(() => {
+        loader.classList.add("hidden");
+        setTimeout(() => window.location.href = '/', 2000);
+      }, 1000);
+      }
+    });
+
+    // Theme setting
+    window.onload = () => {
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark");
+      }
+      document.body.classList.add("theme-transition");
+      setTimeout(() => document.body.classList.remove("theme-transition"), 400);
+    };
+  </script>
+
+</body>
+</html>

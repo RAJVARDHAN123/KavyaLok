@@ -1,0 +1,485 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500&display=swap');
+
+*{
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  /* background: linear-gradient(135deg, #fbeaff, #dbf4ff); */
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.admin-container {
+  max-width: 800px;
+  margin:  auto;
+  background: #f8f8f8;
+  border-radius: 0;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  height: 100%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+textarea {
+  padding: 15px;
+  border: none;
+  outline: none;
+  border-radius: 12px;
+  font-size: 16px;
+  resize: vertical;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+  min-height: 100px;
+}
+
+button[type="submit"] {
+  padding: 12px;
+  font-size: 16px;
+  background: #0078bd;
+  box-shadow: 0 8px 18px #0051803f;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button[type="submit"]:hover {
+  background: #006097;
+}
+
+.list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.shayari-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+}
+
+.shayari-text {
+  white-space: pre-line;
+  font-size: 15px;
+  color: #444;
+}
+
+.card-actions {
+  position: absolute;
+  
+  display: flex;
+  flex-direction: column;
+  top: 15px;
+  right: 15px;
+  display: flex;
+  gap: 8px;
+}
+
+.card-actions i {
+  cursor: pointer;
+  font-size: 15px;
+  color: #fff;
+  transition: color 0.2s ease;
+}
+
+#logoutBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to right, #eb2571, #e54669);
+  box-shadow: 0 8px 18px #db045750;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 7px;
+  margin: 22px auto;
+  margin-bottom: 70px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+  width: 80%;
+}
+
+#logoutBtn:hover {
+  background: linear-gradient(to right, #b91d59, #ac344e);
+}
+
+.e {
+  margin-left: 5px;
+  padding: 10px;
+  border-radius: 35px;
+  font-size: smaller;
+}
+
+.fa-pen{
+  background-color: #f7bb16;
+  box-shadow: 0 8px 18px #f7bb164b;
+}
+.fa-trash{
+  background-color: #f7166c;
+  box-shadow: 0 8px 18px rgba(236, 2, 92, 0.267)
+}
+
+#status {
+  margin-top: 20px;
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+.footer-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 40px;
+  box-shadow: 0 -8px 18px rgba(0, 81, 128, 0.1);
+  z-index: 20;
+}
+
+/* ICON BUTTONS */
+.footer-nav i {
+  font-size: 20px;
+  color: #0078bd;
+  background: #e8f4fc;
+  padding: 10px 14px;
+  border-radius: 12px;
+  box-shadow: 0 6px 14px rgba(0, 81, 128, 0.12);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.fa-cog{
+  margin-right: 70px;
+  margin-left: -70px;
+}
+
+.footer-nav i:hover {
+  background-color: #d2ecff;
+}
+
+/* ACTIVE ICON */
+.footer-nav i.active {
+  background: linear-gradient(135deg, #0078bd, #00b0ff);
+  color: #fff;
+  box-shadow: none;
+  transform: scale(1.1);
+  transition: all 0.3s ease;
+}
+
+@media screen and (max-width: 768px) {
+  .main-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .main-header {
+    padding: 8px 0;
+  }
+}
+
+/* Dark Theme */
+body.dark {
+  background: #181825;
+  color: #f0f0ff;
+}
+
+body.dark .dark-toggle .toggle-text{
+  color: #f0f0ff;
+}
+
+body.dark .main-header h1 {
+  color: #f0f0ff;
+}
+
+body.dark .footer-nav i {
+  background-color: #1C1E23;
+  color: whitesmoke;
+}
+
+body.dark .footer-nav {
+  background-color: #14161B;
+  color: whitesmoke;
+}
+
+body.dark .footer-nav i.active {
+  background: linear-gradient(135deg, #1C1E23, #1C1E23);
+  color: #00b0ff;
+  box-shadow: none;
+}
+
+body.dark #shayariInput {
+  background: #1f1f2b;
+  color: #fff;
+}
+
+body.dark .shayari-card {
+  background-color: #14161b;
+  color: white;
+}
+
+body.dark .shayari-card .shayari-text {
+  color: white;
+}
+
+body.dark .main-header {
+  background-color: #14161b;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+body.dark .admin-container {
+  background-color: #181825;
+ }
+
+
+@media (max-width: 768px) {
+  .footer-nav i {
+    padding: 8px 10px;
+    font-size: 18px;
+  }
+
+  .plus-button {
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
+  }
+}
+
+.footer-nav i.active {
+  animation: popInActive 0.3s ease-in-out;
+}
+
+@keyframes popInActive {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+
+
+/* NEW: wrap the plus-button in a separate container */
+.plus-button-wrapper {
+  position: fixed;
+  bottom: 25px; /* this moves the button above the footer */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30; /* higher than footer */
+}
+
+.plus-button {
+  background: linear-gradient(135deg, #0078bd, #00b0ff);
+  color: #fff;
+  font-size: 28px;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  line-height: 0;
+  text-align: center;
+  border: none;
+  box-shadow: 0 8px 20px #0067a377;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.plus-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px #0079be9f;
+}
+
+@media (max-width: 768px) {
+  .footer-nav i {
+    padding: 8px 10px;
+    font-size: 18px;
+  }
+}
+
+.footer-nav i.active {
+  animation: popInActive 0.3s ease-in-out;
+}
+
+
+@media screen and (max-width: 768px) {
+  .main-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .footer-nav i {
+    font-size: 20px;
+    padding: 8px;
+  }
+
+  .main-header {
+    padding: 8px 0;
+  }
+}
+
+.main-header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background-color: #ffffff;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.main-header h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: 2rem;
+  color: #022660;
+  margin-right: auto;
+}
+
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(50px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+body.dark .loader-overlay {
+  background-color: rgba(24, 24, 37, 0.85);
+}
+
+/* Loader Card */
+.loader-card {
+  background: transparent;
+  padding: 24px 36px;
+  border-radius: 20px;
+  text-align: center;
+  animation: fadeSlideIn 0.5s ease-out;
+}
+
+body.dark .loader-card {
+  background: transparent;
+}
+
+.loader-ring {
+  width: 56px;
+  height: 56px;
+  border: 6px solid transparent;
+  border-top: 6px solid #0078bd;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: auto;
+}
+
+body.dark .loader-ring {
+  border-top-color: #00b0ff;
+}
+
+.loader-text {
+  margin-top: 16px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #2b2b2b;
+}
+
+body.dark .loader-text {
+  color: #f0f0ff;
+}
+
+.loader-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Full wrapper with flex layout */
+.pending-wrapper {
+  display: flex;
+  overflow: hidden;
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  min-height: 160px;
+}
+
+/* Match in dark mode */
+body.dark .pending-wrapper {
+  background: #0f0f15;
+}
+
+/* Styled textarea */
+textarea.pending-edit {
+  flex: 1;
+  padding: 20px;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  resize: vertical;
+  border-radius: 0;
+  background: #f0f0f5;
+  color: #222;
+}
+
+/* Dark mode textarea */
+body.dark textarea.pending-edit {
+  background: #1f1f2b;
+  color: #fff;
+}
+
+/* Side button container */
+.approve-actions {
+  display: flex;
+  flex-direction: column;
+  width: 70px;
+  min-height: 100%;
+  flex-shrink: 0;
+}
+
+/* Icon button styles */
+.approve-actions i {
+  flex: 1;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+}
+
+/* ✅ Tick */
+.approve-actions .fa-check {
+  background: #18ffba; /* Green */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* ❌ Cross */
+.approve-actions .fa-times {
+  background: #f7166c; /* Red */
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Button hover effect (optional) */
+.approve-actions i:hover {
+  filter: brightness(0.9);
+}

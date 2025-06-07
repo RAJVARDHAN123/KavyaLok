@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KāvyaLok Vinyās</title>
+  <link rel="icon" type="image/png" href="/logo.png" />
+  <link rel="stylesheet" href="style.css" />
+  <meta name="theme-color" content="#181825" />
+<meta name="mobile-web-app-capable" content="yes">
+
+  <script src="https://kit.fontawesome.com/798a5509b9.js" crossorigin="anonymous"></script>
+
+  <!-- Firebase SDKs -->
+  <script defer src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/8.8.1/firebase-auth.js"></script>
+  <script defer src="script.js"></script>
+</head>
+<body>
+
+<div id="pageLoader" class="loader-overlay">
+  <div class="loader-card">
+    <div class="loader-ring"></div>
+    <p class="loader-text">Loading Settings...</p>
+  </div>
+</div>
+
+
+
+  <!-- HEADER -->
+  <header class="main-header">
+    <h1>Kavyalok</h1>
+  </header>
+
+  <!-- MAIN SETTINGS UI -->
+  <main class="settings-page">
+    <div class="settings-card">
+      <div class="profile-section">
+        <i class="fas fa-user-circle profile-icon"></i>
+        <h2 id="userName">User</h2>
+        <p id="userEmail">user@example.com</p>
+      </div>
+
+      <button id="logoutBtn" class="logout-button">Logout</button>
+      <button id="loginBtn" class="login-button">Login</button>
+
+      <!-- Dark Mode Toggle -->
+      <div class="dark-toggle">
+        <label class="toggle-label">
+          <input type="checkbox" id="darkModeToggle" />
+          <span class="toggle-slider"></span>
+        </label>
+        <span class="toggle-text">Dark Mode</span>
+      </div>
+    </div>
+  </main>
+
+
+
+  
+<div class="plus-button-wrapper">
+  <button class="plus-button" onclick="location.href='/Admin/'">+</button>
+</div>
+
+<footer class="footer-nav">
+  <i class="fas fa-home" onclick="location.href='/'"></i>
+  <i class="fas fa-cog active"></i>
+</footer>
+
+
+</body>
+</html>
