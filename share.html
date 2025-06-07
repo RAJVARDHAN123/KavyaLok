@@ -1,107 +1,637 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Kavyalok kalyan</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" href="share.css" />
-  <link rel="icon" href="/logo.png" />
-  <script src="https://kit.fontawesome.com/798a5509b9.js" crossorigin="anonymous"></script>
-</head>
-<body class="theme-transition">
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500&display=swap');
 
-  <!-- Page Loader -->
-  <div id="pageLoader" class="loader-overlay">
-    <div class="loader-card">
-      <div class="loader-ring"></div>
-      <p class="loader-text">Submitting Shayari...</p>
-    </div>
-  </div>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
 
-  <!-- Header -->
-  <header class="main-header">
-    <h1>Kavyalok</h1>
-  </header>
+body {
+  background-color: #f5f5f7;
+  height: 100vh;
+  overflow: hidden;
+}
 
-  <!-- Main content -->
-  <main class="settings-page">
-    <div class="settings-card">
-      <div class="profile-section">
-        <i class="fas fa-feather-alt profile-icon"></i>
-        <h2>Submitting Shayari</h2>
-        <p id="statusText">Please wait while we save your Shayari...</p>
-      </div>
-    </div>
-  </main>
-  
-  <!-- Firebase Module SDKs -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
-    import { getDatabase, push, ref, set } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js";
+body {
+  padding-top: env(titlebar-area-height, 30px);
+}
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyAnk8ApGJZd85R8eT2ryg72jUd90VEyuAQ",
-      authDomain: "test-pro-e6152.firebaseapp.com",
-      databaseURL: "https://test-pro-e6152-default-rtdb.firebaseio.com",
-      projectId: "test-pro-e6152",
-      appId: "1:766763484355:web:db970872019c63a507ce76"
-    };
+.titlebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: env(titlebar-area-height, 30px);
+  background-color: #181825;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  -webkit-app-region: drag; /* for desktop apps */
+}
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getDatabase(app);
+.slide-container {
+  height: calc(100vh - 160px);
+  padding: 0 0 60px;
+  max-width: 1120px;
+  margin: auto;
+}
 
-    const loader = document.getElementById("pageLoader");
-    const statusText = document.getElementById("statusText");
+.slide-content {
+  margin: 0 20px;
+  overflow: hidden;
+  height: 100%;
+}
 
-    onAuthStateChanged(auth, async user => {
-      if (!user) {
-        location.href = '/auth';
-        return;
-      }
+.card {
+  /* border-radius: 25px; */
+  background-color: #FFF;
+}
 
-      const params = new URLSearchParams(window.location.search);
-      const text = params.get('text');
+.description {
+  font-size: 16px;
+  color: #2b2b2b;
+  text-align: center;
+  line-height: 1.8;
+  white-space: pre-line;
+  margin-top: 20px;
+  font-weight: 700;
+}
 
-      if (text) {
-        try {
-          const newRef = push(ref(db, 'shayari_submissions'));
-          await set(newRef, { text });
-          statusText.innerHTML = "✅ Shared Shayari Submitted Successfully!";
-      setTimeout(() => {
-        loader.classList.add("hidden");
-        setTimeout(() => window.location.href = '/admin/', 100);
-      }, 200);
-        } catch (e) {
-          statusText.innerHTML = "❌ Failed to submit. Please try again.";
-          
+.button {
+  border: none;
+  font-size: 16px;
+  color: #FFF;
+  padding: 8px 16px;
+  background-color: #4070F4;
+  border-radius: 6px;
+  margin: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
 
-      setTimeout(() => {
-        loader.classList.add("hidden");
-        setTimeout(() => window.location.href = '/', 100);
-      }, 200);
-        }
-      } else {
-        statusText.innerHTML = "⚠️ No Shayari text received.";
-        
+.button:hover {
+  background: #265DF2;
+}
 
-      setTimeout(() => {
-        loader.classList.add("hidden");
-        setTimeout(() => window.location.href = '/', 2000);
-      }, 1000);
-      }
-    });
+.button.edit-btn {
+  background-color: #67e8f9;
+  color: #ffffff;
+}
 
-    // Theme setting
-    window.onload = () => {
-      if (localStorage.getItem("theme") === "dark") {
-        document.body.classList.add("dark");
-      }
-      document.body.classList.add("theme-transition");
-      setTimeout(() => document.body.classList.remove("theme-transition"), 400);
-    };
-  </script>
+.button.edit-btn:hover {
+  background-color: #38d6e0;
+}
 
-</body>
-</html>
+@media screen and (max-width: 768px) {
+  .main-header h1 {
+    font-size: 1.8rem;
+  }
+
+  #searchBar {
+    width: 90%;
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .description {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .button {
+    font-size: 14px;
+    padding: 6px 12px;
+    margin: 10px;
+  }
+
+  .plus-button {
+    width: 45px;
+    height: 45px;
+    font-size: 24px;
+  }
+
+  .footer-nav i {
+    font-size: 20px;
+    padding: 8px;
+  }
+
+  .card-content {
+    padding: 8px 10px;
+  }
+
+  .main-header {
+    padding: 8px 0;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+/* Fullscreen slider block */
+.slide-container {
+  width: 100vw;
+  height: calc(100vh - 80px); /* adjusts for header height */
+  padding-bottom: 70px; /* room for footer */
+}
+
+.slide-content {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+.swiper-slide {
+  height: 100%;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+.card {
+  background-color: #FFF;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: fadeSlideIn 0.6s ease-in-out;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.card-content {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.card-content.scrollable {
+  display: block;
+  overflow-y: auto;
+  align-items: flex-start;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.search-toggle.pop-out {
+  animation: popOut 0.35s forwards;
+}
+
+@keyframes popOut {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+/* Search Input */
+#searchBar {
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: all 0.4s ease;
+  pointer-events: none;
+  width: 0;
+  padding: 12px 16px;
+  margin-left: 16px;
+  border: none;
+  border-radius: 12px;
+  outline: none;
+  font-size: 16px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+  background: #fff;
+  color: #333;
+}
+
+#searchBar.visible {
+  opacity: 1;
+  transform: scaleX(1);
+  width: 250px;
+  pointer-events: auto;
+}
+
+/* SEARCH ICON */
+.search-toggle {
+  background-color: #0078bd;
+  color: white;
+  font-size: 18px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 12px;
+  margin-right: -50px;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(0, 81, 128, 0.25);
+  transition: background 0.3s ease;
+}
+
+.search-toggle:hover {
+  background-color: #005a8f;
+}
+
+/* SEARCH INPUT MATCHING THE STYLE */
+#searchBar {
+  margin-left: 16px;
+  padding: 12px 18px;
+  border: none;
+  font-size: 16px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 18px rgba(0, 81, 128, 0.08);
+  outline: none;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.footer-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #ffffff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 12px 0;
+  box-shadow: 0 -8px 18px rgba(0, 81, 128, 0.1);
+  z-index: 20;
+}
+
+/* ICON BUTTONS */
+.footer-nav i {
+  font-size: 20px;
+  color: #0078bd;
+  background: #e8f4fc;
+  padding: 10px 14px;
+  border-radius: 12px;
+  box-shadow: 0 6px 14px rgba(0, 81, 128, 0.12);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.footer-nav i:hover {
+  background-color: #d2ecff;
+}
+
+/* ACTIVE ICON */
+.footer-nav i.active {
+  background: linear-gradient(135deg, #0078bd, #00b0ff);
+  color: #fff;
+  box-shadow: none;
+  transform: scale(1.1);
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .footer-nav i {
+    padding: 8px 10px;
+    font-size: 18px;
+  }
+
+  .plus-button {
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
+  }
+}
+
+.footer-nav i.active {
+  animation: popInActive 0.3s ease-in-out;
+}
+
+@keyframes popInActive {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+
+.footer-nav {
+  position: fixed; /* back to fixed */
+  bottom: 0;
+  width: 100%;
+  background: #ffffff;
+  display: flex;
+  /* justify-content: space-around; */
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 40px;
+  box-shadow: 0 -8px 18px rgba(0, 81, 128, 0.1);
+  z-index: 20;
+}
+
+/* NEW: wrap the plus-button in a separate container */
+.plus-button-wrapper {
+  position: fixed;
+  bottom: 25px; /* this moves the button above the footer */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30; /* higher than footer */
+}
+
+.plus-button {
+  background: linear-gradient(135deg, #f7166c, #ff4fa5);
+  color: #fff;
+  font-size: 28px;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  line-height: 0;
+  text-align: center;
+  border: none;
+  box-shadow: 0 8px 20px rgba(247, 22, 108, 0.3);
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.plus-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 24px rgba(247, 22, 108, 0.4);
+}
+
+/* Settings Card & Layout */
+.settings-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  min-height: calc(100vh - 100px);
+  /* background: #f9fafe; */
+}
+
+.settings-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 12px 28px rgba(0, 120, 189, 0.12);
+  padding: 40px;
+  max-width: 600px;
+  text-align: center;
+}
+
+.profile-icon {
+  font-size: 72px;
+  color: #0078bd;
+  margin-bottom: 20px;
+}
+
+/* Toggle Switch */
+.dark-toggle {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.toggle-label {
+  position: relative;
+  display: inline-block;
+  width: 54px;
+  height: 28px;
+}
+
+.toggle-label input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #ccc;
+  border-radius: 34px;
+  transition: 0.4s;
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 4px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+.toggle-label input:checked + .toggle-slider {
+  background: linear-gradient(135deg, #222325, #212227);
+}
+
+.toggle-label input:checked + .toggle-slider:before {
+  transform: translateX(26px);
+}
+
+.toggle-text {
+  font-size: 16px;
+  color: #0078bd;
+  font-weight: 600;
+}
+
+/* Dark Theme */
+body.dark {
+  background: #181825;
+  color: #f0f0ff;
+}
+
+body.dark .dark-toggle .toggle-text{
+  color: #f0f0ff;
+}
+
+body.dark .main-header h1 {
+  color: #f0f0ff;
+}
+
+body.dark .footer-nav i {
+  background-color: #1C1E23;
+  color: whitesmoke;
+}
+
+body.dark .footer-nav i.active {
+  background: linear-gradient(135deg, #1C1E23, #1C1E23);
+  color: #00b0ff;
+  box-shadow: none;
+}
+
+
+body.dark .footer-nav {
+  background-color: #14161b;
+}
+
+body.dark .main-header,
+body.dark .settings-card {
+  background-color: #14161b;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+
+}
+
+body.dark .profile-icon {
+  color: #00b0ff;
+}
+
+body.dark .toggle-text {
+  color: #00b0ff;
+}
+
+/* Unified Button Base */
+.login-button, .logout-button {
+  border: none;
+  font-size: 16px;
+  padding: 14px 24px;
+  color: #fff;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 24px;
+  display: inline-block;
+  width: 100%;
+}
+
+/* LOGIN - BLUE GRADIENT */
+.login-button {
+  background: linear-gradient(135deg, #0078bd, #00b0ff);
+  box-shadow: 0 8px 20px rgba(0, 120, 189, 0.3);
+}
+
+.login-button:hover {
+  background: linear-gradient(135deg, #0064a3, #0090e6);
+  box-shadow: 0 10px 24px rgba(0, 120, 189, 0.35);
+}
+
+/* LOGOUT - PINK GRADIENT */
+.logout-button {
+  background: linear-gradient(135deg, #f7166c, #ff4fa5);
+  box-shadow: 0 8px 20px rgba(247, 22, 108, 0.3);
+}
+
+.logout-button:hover {
+  background: linear-gradient(135deg, #d5105c, #f03093);
+  box-shadow: 0 10px 24px rgba(247, 22, 108, 0.4);
+}
+
+html, body, .settings-card, .main-header, .footer-nav {
+  transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.toggle-slider:before {
+  transition: 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* bounce */
+}
+
+body.theme-transition {
+  transition: background-color 0.4s ease, transform 0.4s ease;
+  transform: scale(0.99);
+}
+
+.main-header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background-color: #ffffff;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.main-header h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: 2rem;
+  color: #022660;
+  margin-right: auto;
+}
+
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(50px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+body.dark .loader-overlay {
+  background-color: rgba(24, 24, 37, 0.85);
+}
+
+/* Loader Card */
+.loader-card {
+  background: transparent;
+  padding: 24px 36px;
+  border-radius: 20px;
+  text-align: center;
+  animation: fadeSlideIn 0.5s ease-out;
+}
+
+body.dark .loader-card {
+  background: transparent;
+}
+
+.loader-ring {
+  width: 56px;
+  height: 56px;
+  border: 6px solid transparent;
+  border-top: 6px solid #0078bd;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: auto;
+}
+
+body.dark .loader-ring {
+  border-top-color: #00b0ff;
+}
+
+.loader-text {
+  margin-top: 16px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #2b2b2b;
+}
+
+body.dark .loader-text {
+  color: #f0f0ff;
+}
+
+.loader-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
