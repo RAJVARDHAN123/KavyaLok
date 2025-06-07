@@ -3,46 +3,42 @@
   "short_name": "Kavyalok",
   "description": "It's a shayari showcasing platform made by Raj Vardhan Singh.",
   "start_url": "/",
-  "display": "fullscreen",
-  "orientation": "portrait",
-  "background_color": "#181825",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone"],
   "theme_color": "#e0e7ff",
-  "lang": "en",
+  "background_color": "#181825",
+  "orientation": "portrait",
+  "scope": "/",
   "icons": [
     {
-      "src": "loog.png",
+      "src": "logo.png",
       "sizes": "700x700",
       "type": "image/png"
     }
   ],
-  "categories": [
-    "education",
-    "entertainment"
-  ],
-
-  "share_target": {
-  "action": "/share.html",
-  "method": "POST",
-  "enctype": "multipart/form-data",
-  "params": {
-    "text": "text"
-  }
-},
   "shortcuts": [
     {
       "name": "Add shayari",
-      "url": "https://kavyaloks.netlify.app/admin/",
+      "url": "/admin/",
       "description": "Add another shayari to your shayari collection"
     },
     {
       "name": "Edit settings",
-      "url": "https://kavyaloks.netlify.app/settings/",
+      "url": "/settings/",
       "description": "Edit your preferences"
     },
     {
       "name": "View shayaris",
-      "url": "https://kavyaloks.netlify.app/",
+      "url": "/",
       "description": "View your shayaris collections"
     }
-  ]
+  ],
+  "share_target": {
+    "action": "/share.html",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "text": "text"
+    }
+  }
 }
