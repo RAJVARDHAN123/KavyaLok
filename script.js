@@ -158,3 +158,10 @@ const devOverlay = document.getElementById('devModalOverlay');
 // if (Object.keys(allShayaris).length > 0) {
 //   loader.classList.add('hidden');
 // }
+
+// Inside your main JavaScript file, e.g., script.js or app.js
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/service-worker.js')
+    .then(reg => console.log('✅ Service Worker registered:', reg))
+    .catch(err => console.error('❌ Service Worker registration failed:', err));
+}
