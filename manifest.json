@@ -3,12 +3,11 @@
   "short_name": "Kavyalok",
   "description": "It's a shayari showcasing platform made by Raj Vardhan Singh.",
   "start_url": "/",
-  "display": "standalone",
-  "display_override": ["window-controls-overlay", "standalone"],
-  "theme_color": "#e0e7ff",
-  "background_color": "#181825",
+  "display": "fullscreen",
   "orientation": "portrait",
-  "scope": "/",
+  "background_color": "#181825",
+  "theme_color": "#e0e7ff",
+  "lang": "en",
   "icons": [
     {
       "src": "logo.png",
@@ -16,6 +15,19 @@
       "type": "image/png"
     }
   ],
+  "categories": [
+    "education",
+    "entertainment"
+  ],
+
+  "share_target": {
+  "action": "/share.html",
+  "method": "POST",
+  "enctype": "multipart/form-data",
+  "params": {
+    "text": "text"
+  }
+},
   "shortcuts": [
     {
       "name": "Add shayari",
@@ -32,13 +44,5 @@
       "url": "/",
       "description": "View your shayaris collections"
     }
-  ],
-  "share_target": {
-    "action": "/share.html",
-    "method": "POST",
-    "enctype": "multipart/form-data",
-    "params": {
-      "text": "text"
-    }
-  }
+  ]
 }
