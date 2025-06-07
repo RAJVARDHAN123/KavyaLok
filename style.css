@@ -14,6 +14,25 @@ body {
   overflow-x:hidden;
 }
 
+body {
+  padding-top: env(titlebar-area-height, 30px);
+}
+
+.titlebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: env(titlebar-area-height, 30px);
+  background-color: #181825;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  -webkit-app-region: drag; /* for desktop apps */
+}
+
 .slide-container {
   height: calc(100vh - 160px);
   padding: 0 0 60px;
