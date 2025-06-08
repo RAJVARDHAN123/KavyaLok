@@ -76,14 +76,14 @@
       statusText.innerHTML = "✅ Shared Shayari Submitted Successfully!";
       setTimeout(() => {
         loader.classList.add("hidden");
-        setTimeout(() => window.location.href = '/admin/', 100);
-      }, 200);
+        setTimeout(() => window.location.href = '/admin/', 2000);
+      }, 1000);
     } catch (e) {
       statusText.innerHTML = "❌ Failed to submit. Please try again.";
       setTimeout(() => {
         loader.classList.add("hidden");
-        setTimeout(() => window.location.href = '/', 100);
-      }, 200);
+        setTimeout(() => window.location.href = '/', 2000);
+      }, 1000);
     }
   };
 
@@ -126,7 +126,7 @@
     } else {
       const handled = await processFileShare();
       if (!handled) {
-        statusText.innerHTML = "⚠️ No Shayari text or file received.";
+        statusText.innerHTML = "⚠️ No Shayari or file received.";
         setTimeout(() => {
           loader.classList.add("hidden");
           setTimeout(() => window.location.href = '/', 2000);
